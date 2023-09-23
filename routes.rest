@@ -1,1 +1,28 @@
-GET http://localhost:8080/lesson1
+GET http://localhost:8080/users
+
+### Create contact
+POST http://localhost:8080/users HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Jacob",
+    "lastName":"Doe",
+    "email":"jacobdoe@gmail.com",
+    "favoriteColor":"Purple",
+    "birthday":"1/1/2001"
+}
+
+### Update contact
+PUT http://localhost:8080/users/650f1ef4871c6808f402ef69 HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Jason",
+    "lastName":"Doe",
+    "email":"jasondoe@gmail.com",
+    "favoriteColor":"Purplish",
+    "birthday":"1/1/2001"
+}
+
+### Delete contact
+DELETE http://localhost:8080/users/650f1ef4871c6808f402ef69 HTTP/1.1
