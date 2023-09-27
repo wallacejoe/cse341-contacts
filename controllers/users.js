@@ -4,7 +4,10 @@ const ObjectId = require('mongodb').ObjectId
 const getAll = async (req, res) => {
     //#swagger.tags=['Users']
     const result = await mongodb.getDb().db('CSE341').collection('contacts').find()
-    result.toArray().then((users) => {
+    result.toArray((err, users) => {
+        if (err) {
+            res.status(400).json({message: err})
+        }
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(users)
     })
@@ -14,7 +17,10 @@ const getSingle = async (req, res) => {
     //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id)
     const result = await mongodb.getDb().db('CSE341').collection('contacts').find({_id: userId})
-    result.toArray().then((users) => {
+    result.toArray((err, users) => {
+        if (err) {
+            res.status(400).json({message: err})
+        }
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(users[0])
     })
